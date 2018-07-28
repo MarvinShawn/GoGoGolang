@@ -3,11 +3,11 @@ package service
 import (
 	"../model"
 	"../util"
-	"sync"
 	"fmt"
+	"sync"
 )
 
-func ListUser(username string,offset,limit int) ([]*model.UserInfo,uint64,error)  {
+func ListUser(username string, offset, limit int) ([]*model.UserInfo, uint64, error) {
 
 	infos := make([]*model.UserInfo, 0)
 	users, count, err := model.ListUser(username, offset, limit)
@@ -70,6 +70,5 @@ func ListUser(username string,offset,limit int) ([]*model.UserInfo,uint64,error)
 	}
 
 	return infos, count, nil
-
 
 }

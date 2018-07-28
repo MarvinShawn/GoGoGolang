@@ -1,8 +1,8 @@
 package model
 
 import (
-	"time"
 	"sync"
+	"time"
 )
 
 type BaseModel struct {
@@ -10,8 +10,7 @@ type BaseModel struct {
 	CreatedAt time.Time  `gorm:"column:createdAt" json:"-"`
 	UpdatedAt time.Time  `gorm:"column:updatedAt" json:"-"`
 	DeletedAt *time.Time `gorm:"column:deletedAt" sql:"index" json:"-"`
-} 
-
+}
 
 type UserInfo struct {
 	Id        uint64 `json:"id"`
@@ -23,7 +22,7 @@ type UserInfo struct {
 }
 
 type UserList struct {
-	Lock *sync.Mutex
+	Lock  *sync.Mutex
 	IdMap map[uint64]*UserInfo
 }
 
@@ -31,4 +30,3 @@ type UserList struct {
 type Token struct {
 	Token string `json:"token"`
 }
-

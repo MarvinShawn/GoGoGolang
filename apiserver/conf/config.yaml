@@ -4,6 +4,7 @@ addr: :8888   #HTTP绑定端口
 name: apiserver    #API Server的名字
 url: http://127.0.0.1:8888   #pingServer函数请求的API服务器的ip:port
 max_ping_count: 10 #pingServer函数try的次数
+jwt_secret: Rkuaihnsud7hausHJJY&8shdiuaYas8asdasas9asd8Aasd
 log:
   writers: file,stdout    #输出位置，有两个可选项 -- file和stdout。选择file会将日志记录到logger_file指定的日志文件中，选择 stdout 会将日志输出到标准输出，当然也可以两者同时选择
   logger_level: DEBUG  #日止级别 DEBUG  INFO  WARN ERROR FATAL

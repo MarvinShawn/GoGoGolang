@@ -2,23 +2,18 @@ package auth
 
 import "golang.org/x/crypto/bcrypt"
 
-
 //加密
-func Encrypt(source string) (string,error)  {
+func Encrypt(source string) (string, error) {
 
-	hashedBytes, err := bcrypt.GenerateFromPassword([]byte(source),bcrypt.DefaultCost)
+	hashedBytes, err := bcrypt.GenerateFromPassword([]byte(source), bcrypt.DefaultCost)
 
-	return string(hashedBytes),err
+	return string(hashedBytes), err
 
 }
-
 
 //比较
-func Compare(hashedPassword,password string) error  {
+func Compare(hashedPassword, password string) error {
 
-
-	return bcrypt.CompareHashAndPassword([]byte(hashedPassword),[]byte(password))
+	return bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 
 }
-
-

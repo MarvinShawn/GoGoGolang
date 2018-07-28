@@ -1,5 +1,5 @@
 package constvar
 
-const  (
+const (
 	DefaultLimit = 50
 )

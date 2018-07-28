@@ -1,26 +1,22 @@
 package user
 
 import (
-	"github.com/gin-gonic/gin"
-	"strconv"
-	"../../model"
 	"../../handle"
+	"../../model"
 	"../../pkg/errno"
 	"../../util"
+	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
 	"github.com/lexkong/log/lager"
+	"strconv"
 )
 
-func Update(c *gin.Context)  {
-
+func Update(c *gin.Context) {
 
 	log.Info("Update function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	// Get the user id from the url parameter.
 	userId, _ := strconv.Atoi(c.Param("id"))
-
-
-
 
 	// Binding the user data.
 	var u model.UserModel
@@ -31,8 +27,8 @@ func Update(c *gin.Context)  {
 	}
 
 	var queryUser model.UserModel
-	if  err := model.GetUserById(u.Id,&queryUser);err != nil {
-		handle.SendResponse(c,errno.ErrUserNotFound,nil)
+	if err := model.GetUserById(u.Id, &queryUser); err != nil {
+		handle.SendResponse(c, errno.ErrUserNotFound, nil)
 		return
 	}
 
@@ -52,7 +48,7 @@ func Update(c *gin.Context)  {
 
 	// Save changed fields.
 	if err := u.Update(); err != nil {
-		log.Errorf(err,"Get an error")
+		log.Errorf(err, "Get an error")
 		handle.SendResponse(c, errno.ErrDatabase, nil)
 		return
 	}

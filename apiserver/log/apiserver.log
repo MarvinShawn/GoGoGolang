@@ -186,3 +186,19 @@
 {"level":"INFO","timestamp":"2018-07-09 22:45:44.741","file":"middleware/logging.go:82","msg":"6.969048ms    | 127.0.0.1    | GET /v1/user | {code: 0, message: OK}"}
 {"level":"INFO","timestamp":"2018-07-09 22:45:59.557","file":"middleware/logging.go:82","msg":"5.287355ms    | 127.0.0.1    | GET /v1/user | {code: 0, message: OK}"}
 {"level":"INFO","timestamp":"2018-07-09 22:46:59.187","file":"middleware/logging.go:82","msg":"4.307643ms    | 127.0.0.1    | GET /v1/user/kong | {code: 20102, message: The user was not found.}"}
+{"level":"INFO","timestamp":"2018-07-28 22:43:49.089","file":"apiserver/main.go:80","msg":"Start to listening the incoming requests on http address: :8888"}
+{"level":"INFO","timestamp":"2018-07-28 22:43:49.090","file":"apiserver/main.go:30","msg":"Waiting for the router, retry in 1 second."}
+{"level":"INFO","timestamp":"2018-07-28 22:43:50.097","file":"apiserver/main.go:76","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2018-07-28 22:44:13.364","file":"middleware/logging.go:82","msg":"158.982µs     | 127.0.0.1    | GET /v1/user/kong | {code: 20103, message: The token was invalid.}"}
+{"level":"ERROR","timestamp":"2018-07-28 22:46:18.593","file":"middleware/logging.go:74","msg":"response body can not unmarshal to model.Response struct, body: ``","data":{"error":"unexpected end of JSON input"}}
+{"level":"INFO","timestamp":"2018-07-28 22:46:18.594","file":"middleware/logging.go:82","msg":"120.133µs     | 127.0.0.1    | POST /v1/login | {code: 10001, message: unexpected end of JSON input}"}
+{"level":"INFO","timestamp":"2018-07-28 22:48:12.632","file":"middleware/logging.go:82","msg":"107.279736ms  | 127.0.0.1    | POST /login | {code: 0, message: OK}"}
+{"level":"INFO","timestamp":"2018-07-28 22:48:19.247","file":"middleware/logging.go:82","msg":"85.864573ms   | 127.0.0.1    | POST /login | {code: 20104, message: The password was incorrect.}"}
+{"level":"INFO","timestamp":"2018-07-28 22:48:23.350","file":"middleware/logging.go:82","msg":"90.049492ms   | 127.0.0.1    | POST /login | {code: 20104, message: The password was incorrect.}"}
+{"level":"INFO","timestamp":"2018-07-28 22:48:33.582","file":"middleware/logging.go:82","msg":"82.306474ms   | 127.0.0.1    | POST /login | {code: 0, message: OK}"}
+{"level":"INFO","timestamp":"2018-07-28 22:58:46.184","file":"middleware/logging.go:82","msg":"10.881635ms   | 127.0.0.1    | GET /v1/user | {code: 0, message: OK}"}
+{"level":"INFO","timestamp":"2018-07-28 22:58:55.140","file":"middleware/logging.go:82","msg":"110.381µs     | 127.0.0.1    | GET /v1/user | {code: 20103, message: The token was invalid.}"}
+{"level":"INFO","timestamp":"2018-07-28 22:59:00.844","file":"middleware/logging.go:82","msg":"5.268956ms    | 127.0.0.1    | GET /v1/user | {code: 0, message: OK}"}
+{"level":"INFO","timestamp":"2018-07-29 00:03:12.987","file":"apiserver/main.go:75","msg":"Start to listening the incoming requests on http address: :8888"}
+{"level":"INFO","timestamp":"2018-07-29 00:03:12.992","file":"apiserver/main.go:71","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2018-07-29 00:03:22.950","file":"middleware/logging.go:82","msg":"9.009993ms    | 127.0.0.1    | GET /v1/user | {code: 0, message: OK}"}

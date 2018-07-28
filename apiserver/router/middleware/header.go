@@ -2,13 +2,13 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
-	"time"
 	"net/http"
+	"time"
 )
 
 // NoCache is a middleware function that appends headers
 // to prevent the client from caching the HTTP response.
-func NoCache(c *gin.Context)  {
+func NoCache(c *gin.Context) {
 
 	c.Header("Cache-Control", "no-cache, no-store, max-age=0, must-revalidate, value")
 	c.Header("Expires", "Thu, 01 Jan 1970 00:00:00 GMT")
@@ -20,11 +20,11 @@ func NoCache(c *gin.Context)  {
 // Options is a middleware function that appends headers
 // for options requests and aborts then exits the middleware
 // chain and ends the request.
-func Options(c *gin.Context)  {
+func Options(c *gin.Context) {
 
 	if c.Request.Method != "OPTIONS" {
 		c.Next()
-	}else {
+	} else {
 
 		c.Header("Access-Control-Allow-Origin", "*")
 		c.Header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS")
@@ -51,7 +51,3 @@ func Secure(c *gin.Context) {
 	// Also consider adding Content-Security-Policy headers
 	// c.Header("Content-Security-Policy", "script-src 'self' https://cdnjs.cloudflare.com")
 }
-
-
-
-

@@ -1,16 +1,16 @@
 package user
 
 import (
-	"../../pkg/errno"
 	"../../handle"
 	"../../model"
+	"../../pkg/errno"
 	"../../util"
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
 	"github.com/lexkong/log/lager"
 )
 
-func Create(c *gin.Context)  {
+func Create(c *gin.Context) {
 
 	log.Info("User Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
@@ -22,37 +22,35 @@ func Create(c *gin.Context)  {
 	}
 
 	u := model.UserModel{
-		Username:r.Username,
-		Password:r.Password,
+		Username: r.Username,
+		Password: r.Password,
 	}
 
 	// 校验数据
-	if err := u.Validate();err != nil {
-		handle.SendResponse(c,errno.ErrValidation,nil)
+	if err := u.Validate(); err != nil {
+		handle.SendResponse(c, errno.ErrValidation, nil)
 		return
 	}
 
 	//加密用户密码
-	if err := u.Encrypt();err != nil {
+	if err := u.Encrypt(); err != nil {
 
-		handle.SendResponse(c,errno.ErrEncrypt,nil)
+		handle.SendResponse(c, errno.ErrEncrypt, nil)
 		return
 	}
-
 
 	//插进数据库
 	if err := u.Create(); err != nil {
 
-		handle.SendResponse(c,errno.ErrDatabase,nil)
+		handle.SendResponse(c, errno.ErrDatabase, nil)
 		return
 
 	}
 
-
 	rsp := CreateResponse{
-		Username:r.Username,
+		Username: r.Username,
 	}
 
-	handle.SendResponse(c,nil,rsp)
+	handle.SendResponse(c, nil, rsp)
 
 }

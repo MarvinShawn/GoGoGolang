@@ -1,33 +1,33 @@
 package sd
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
-	"github.com/shirou/gopsutil/disk"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"github.com/shirou/gopsutil/cpu"
+	"github.com/shirou/gopsutil/disk"
 	"github.com/shirou/gopsutil/load"
 	"github.com/shirou/gopsutil/mem"
+	"net/http"
 )
 
 const (
-	B = 1
+	B  = 1
 	KB = 1024 * B
 	MB = 1024 * KB
 	GB = 1024 * MB
 )
 
 // 健康检查
-func HealthCheck(c *gin.Context)  {
+func HealthCheck(c *gin.Context) {
 
-	 message := "OK"
-	 c.String(http.StatusOK,"\n" + message)
+	message := "OK"
+	c.String(http.StatusOK, "\n"+message)
 
 }
 
-func DiskCheck(c *gin.Context)  {
+func DiskCheck(c *gin.Context) {
 
-	u,_ := disk.Usage("/")
+	u, _ := disk.Usage("/")
 
 	usedMB := int(u.Used) / MB
 	usedGB := int(u.Used) / GB
@@ -42,7 +42,7 @@ func DiskCheck(c *gin.Context)  {
 	if usedPercent >= 95 {
 		status = http.StatusOK
 		text = "CRITICAL"
-	}else if usedPercent >= 90 {
+	} else if usedPercent >= 90 {
 
 		status = http.StatusOK
 		text = "WARNING"
@@ -50,15 +50,15 @@ func DiskCheck(c *gin.Context)  {
 
 	message := fmt.Sprintf("%s - Free space: %dMB (%dGB) / %dMB (%dGB) | Used: %d%%", text, usedMB, usedGB, totalMB, totalGB, usedPercent)
 
-	c.String(status,"\n"+message)
+	c.String(status, "\n"+message)
 
 }
 
-func CPUCheck(c *gin.Context)  {
+func CPUCheck(c *gin.Context) {
 
-	cores,_ := cpu.Counts(false)
+	cores, _ := cpu.Counts(false)
 
-	a,_ := load.Avg()
+	a, _ := load.Avg()
 	l1 := a.Load1
 	l5 := a.Load5
 	l15 := a.Load15
@@ -71,7 +71,7 @@ func CPUCheck(c *gin.Context)  {
 		status = http.StatusInternalServerError
 		text = "CRITICAL"
 
-	}else if l5 >= float64(cores - 2) {
+	} else if l5 >= float64(cores-2) {
 
 		status = http.StatusTooManyRequests
 		text = "WARNING"
@@ -82,7 +82,6 @@ func CPUCheck(c *gin.Context)  {
 	c.String(status, "\n"+message)
 
 }
-
 
 func RAMCheck(c *gin.Context) {
 	u, _ := mem.VirtualMemory()
